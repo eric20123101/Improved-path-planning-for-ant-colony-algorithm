@@ -6,18 +6,18 @@
 
 % date   : 2019/4/22
 
-%% ¹¹½¨Õ¤¸ñµØÍ¼
+%% æ„å»ºæ …æ ¼åœ°å›¾
 clear;clc
-G=rand(30)>0.8; % G µØĞÎÍ¼Îª01¾ØÕó£¬Èç¹ûÎª1£¬±íÊ¾ÕÏ°­Îï
-save('D:\MATLAB\R2016b\work\AGV\map.mat','G');
+G=rand(30)>0.8; % G åœ°å½¢å›¾ä¸º01çŸ©é˜µï¼Œå¦‚æœä¸º1ï¼Œè¡¨ç¤ºéšœç¢ç‰©
+save('D:\MATLAB\R2016b\work\AGV\map.mat','G');%å°†ç”Ÿæˆçš„éšæœºåœ°å›¾ä»¥matæ ¼å¼ä¿å­˜åˆ°æœ¬åœ°ï¼Œä¾¿äºå’Œæ ‡å‡†ç®—æ³•åœ¨åŒä¸€ä¸ªåœ°å›¾ä¸‹è¿›è¡Œå¯¹æ¯”ï¼Œè¿™ä¸ªè·¯å¾„å¯ä»¥æ”¹ä¸ºè‡ªå·±ç”µè„‘çš„è·¯å¾„
 %load map30.mat
 h=rot90(abs(peaks(30)));
 global MM
 global Dir 
 global Lgrid 
-%Lgrid = input('ÇëÊäÈëÕ¤¸ñÁ£¾¶£º');
+%Lgrid = input('è¯·è¾“å…¥æ …æ ¼ç²’å¾„ï¼š');
 Lgrid = 1;
-MM=size(G,1); %MMÎª¾ØÕóÎ¬Êı
+MM=size(G,1); %MMä¸ºçŸ©é˜µç»´æ•°
 figure(1);   
 for i=1:MM
   for j=1:MM
@@ -28,36 +28,36 @@ for i=1:MM
   x4=(j-1)*Lgrid;y4=(MM-i+1)*Lgrid; 
   f=(max(max(h))-h(i,j))/max(max(h));
     if G(i,j)==1 
-        fill([x1,x2,x3,x4],[y1,y2,y3,y4],[0.2,0.2,0.2]); hold on %Õ¤¸ñÎª1£¬Ìî³äÎªºÚÉ«
+        fill([x1,x2,x3,x4],[y1,y2,y3,y4],[0.2,0.2,0.2]); hold on %æ …æ ¼ä¸º1ï¼Œå¡«å……ä¸ºé»‘è‰²
     else 
-        fill([x1,x2,x3,x4],[y1,y2,y3,y4],[f,1,f]); hold on %Õ¤¸ñÎª0£¬Ìî³äÎª°×É«
+        fill([x1,x2,x3,x4],[y1,y2,y3,y4],[f,1,f]); hold on %æ …æ ¼ä¸º0ï¼Œå¡«å……ä¸ºç™½è‰²
     end 
   end 
 end
 axis([0,MM*Lgrid,0,MM*Lgrid]) 
 grid on
-%% ³õÊ¼»¯µØÍ¼ĞÅÏ¢
+%% åˆå§‹åŒ–åœ°å›¾ä¿¡æ¯
 %{
-Xinitial = input('ÇëÊäÈë³õÊ¼µãµÄX×ø±ê£º');
-Yinitial = input('ÇëÊäÈë³õÊ¼µãµÄY×ø±ê£º');
+Xinitial = input('è¯·è¾“å…¥åˆå§‹ç‚¹çš„Xåæ ‡ï¼š');
+Yinitial = input('è¯·è¾“å…¥åˆå§‹ç‚¹çš„Yåæ ‡ï¼š');
 %}
 Xinitial = 0.6;
 Yinitial = 0.2;
 [initial,ij_initial]= modify(Xinitial,Yinitial);
 if max(ij_initial)>MM||G(ij_initial(1),ij_initial(2))==1
-    error('³õÊ¼µã²»ÄÜÉèÔÚÕÏ°­ÎïÉÏ»ò³¬³ö·¶Î§');
+    error('åˆå§‹ç‚¹ä¸èƒ½è®¾åœ¨éšœç¢ç‰©ä¸Šæˆ–è¶…å‡ºèŒƒå›´');
 end
 %{
-Xdestination = input('ÇëÊäÈëÄ¿±êµãµÄX×ø±ê£º');
-Ydestination = input('ÇëÊäÈëÄ¿±êµãµÄY×ø±ê£º');
+Xdestination = input('è¯·è¾“å…¥ç›®æ ‡ç‚¹çš„Xåæ ‡ï¼š');
+Ydestination = input('è¯·è¾“å…¥ç›®æ ‡ç‚¹çš„Yåæ ‡ï¼š');
     %}
 Xdestination = 29.4;
 Ydestination = 29.3;
 [destination,ij_destination]= modify(Xdestination,Ydestination);
 if max(ij_destination)>MM||G(ij_destination(1),ij_destination(2))==1
-    error('Ä¿±êµã²»ÄÜÉèÔÚÕÏ°­ÎïÉÏ»ò³¬³ö·¶Î§');
+    error('ç›®æ ‡ç‚¹ä¸èƒ½è®¾åœ¨éšœç¢ç‰©ä¸Šæˆ–è¶…å‡ºèŒƒå›´');
 end
-%% ¼ÆËã¾àÀëÆô·¢¾ØÕódis
+%% è®¡ç®—è·ç¦»å¯å‘çŸ©é˜µdis
 dis = zeros(MM,MM);
 for i=1:MM
   for j=1:MM
@@ -66,32 +66,32 @@ for i=1:MM
    dis(i,j) = sqrt(sum(([x y]-destination).^2));
   end
 end
-%% ¼ÆËã¾àÀë×ªÒÆ¾ØÕóD
-D=zeros(MM^2,8);   %ĞĞºÅ±íÊ¾Õ¤¸ñ±êºÅ£¬ÁĞºÅ±íÊ¾ÁÚ½ÓµÄ8¸ö·½ÏòµÄÕ¤¸ñºÅ
+%% è®¡ç®—è·ç¦»è½¬ç§»çŸ©é˜µD
+D=zeros(MM^2,8);   %è¡Œå·è¡¨ç¤ºæ …æ ¼æ ‡å·ï¼Œåˆ—å·è¡¨ç¤ºé‚»æ¥çš„8ä¸ªæ–¹å‘çš„æ …æ ¼å·
 Dir = [-MM-1,-1,MM-1,MM,MM+1,1,1-MM,-MM];
- for i = 1:MM^2     %8·½Ïò×ªÒÆ¾àÀë¾ØÕó³õ²½¹¹½¨
+ for i = 1:MM^2     %8æ–¹å‘è½¬ç§»è·ç¦»çŸ©é˜µåˆæ­¥æ„å»º
      Dirn = Dir+i;
      if G(i)==1
              D(i,:)=inf;
              continue
      end
          for j = 1:8
-             if  Dirn(j)<=0||Dirn(j)>MM^2        %³ö½çµÄÇé¿ö£¬ÔİÇÒÎª0
+             if  Dirn(j)<=0||Dirn(j)>MM^2        %å‡ºç•Œçš„æƒ…å†µï¼Œæš‚ä¸”ä¸º0
                  continue 
              end
              if G(Dirn(j))==1
                  D(i,j) = inf;
-             elseif mod(j,2)==0         %Å¼Êı·½ÏòÎªÉÏÏÂ×óÓÒ·½Ïò
+             elseif mod(j,2)==0         %å¶æ•°æ–¹å‘ä¸ºä¸Šä¸‹å·¦å³æ–¹å‘
                  D(i,j) = 1;
-             elseif j==1 %×óÉÏ·½ÏòµÄÇé¿ö£¬±£Ö¤Â·Ïß²»»á²ÁÕÏ°­Îï±ßÑØ×ß¹ı
+             elseif j==1 %å·¦ä¸Šæ–¹å‘çš„æƒ…å†µï¼Œä¿è¯è·¯çº¿ä¸ä¼šæ“¦éšœç¢ç‰©è¾¹æ²¿èµ°è¿‡
                  if (G(Dirn(2))+G(Dirn(8))==0)
                    D(i,j) = 1.4; 
                  else
                    D(i,j) = inf;   
                  end
-             elseif (Dirn(j-1)<=0||Dirn(j-1)>MM^2)||(Dirn(j+1)<=0||Dirn(j+1)>MM^2)%ÅÅ³ıµô´¹Ö±·½ÏòµÄÕ¤¸ñ³ö½çµÄÇé¿ö
+             elseif (Dirn(j-1)<=0||Dirn(j-1)>MM^2)||(Dirn(j+1)<=0||Dirn(j+1)>MM^2)%æ’é™¤æ‰å‚ç›´æ–¹å‘çš„æ …æ ¼å‡ºç•Œçš„æƒ…å†µ
                  continue
-             elseif G(Dirn(j-1))+G(Dirn(j+1))==0    %ÆäÓàÈı¸öĞ±·½Ïò
+             elseif G(Dirn(j-1))+G(Dirn(j+1))==0    %å…¶ä½™ä¸‰ä¸ªæ–œæ–¹å‘
                  D(i,j) = 1.4;
              else
                  D(i,j) = inf;
@@ -99,7 +99,7 @@ Dir = [-MM-1,-1,MM-1,MM,MM+1,1,1-MM,-MM];
          end
      
  end
-%% ´´Ôì±ß½ç
+%% åˆ›é€ è¾¹ç•Œ
  num = 1:MM^2;
  obs_up = find(mod(num,MM)==1);
  obs_up = obs_up(2:end-1);
@@ -113,12 +113,12 @@ Dir = [-MM-1,-1,MM-1,MM,MM+1,1,1-MM,-MM];
  D(MM,[1,5,6,7,8])=inf;
  D(MM^2-MM+1,[1,2,3,4,5])=inf;
  D(MM^2,[3,4,5,6,7])=inf;
-%% ²ÎÊı³õÊ¼»¯
+%% å‚æ•°åˆå§‹åŒ–
 tic
 NC_max=30; m=50;  Rho=0.3; Q=100; Omega=10; Mu=1;  u=10; Tau_min=10; Tau_max=40; Rho_min=0.2;
-%% »æÖÆÕÒµ½µÄ×îÓÅÂ·¾¶
-[R_best,F_best,L_best,T_best,S_best,S_ave,Shortest_Route,Shortest_Length]=improved(D,initial,destination,dis,h,NC_max,m,Rho,Omega,Mu,Q,u,Tau_min,Tau_max,Rho_min); %º¯Êıµ÷ÓÃ
-%»æÖÆÕÒµ½µÄ×îÓÅÂ·¾¶
+%% ç»˜åˆ¶æ‰¾åˆ°çš„æœ€ä¼˜è·¯å¾„
+[R_best,F_best,L_best,T_best,S_best,S_ave,Shortest_Route,Shortest_Length]=improved(D,initial,destination,dis,h,NC_max,m,Rho,Omega,Mu,Q,u,Tau_min,Tau_max,Rho_min); %å‡½æ•°è°ƒç”¨
+%ç»˜åˆ¶æ‰¾åˆ°çš„æœ€ä¼˜è·¯å¾„
 j = ceil(Shortest_Route/MM);
 i = mod(Shortest_Route,MM);
 i(i==0) = MM;
@@ -128,30 +128,30 @@ x = [initial(1) x destination(1)];
 y = [initial(2) y destination(2)];
 figure(1);
 plot(x,y,'-r');
-xlabel('x'); ylabel('y'); title('×î¼ÑÂ·¾¶');
+xlabel('x'); ylabel('y'); title('æœ€ä½³è·¯å¾„');
 grid on 
 hold on
-toc  %¼ÆËãÔËĞĞÊ±¼ä
-%% »æÖÆÊÕÁ²ÇúÏß
+toc  %è®¡ç®—è¿è¡Œæ—¶é—´
+%% ç»˜åˆ¶æ”¶æ•›æ›²çº¿
 figure(2); iter=1:length(L_best);
 plot(iter,L_best,'-r','LineWidth',1)
-xlabel('µü´ú´ÎÊı'); ylabel('¸÷´ú×î¼ÑÂ·ÏßµÄ³¤¶È');
+xlabel('è¿­ä»£æ¬¡æ•°'); ylabel('å„ä»£æœ€ä½³è·¯çº¿çš„é•¿åº¦');
 axis([0,NC_max,25,90]);
 grid on;hold on
 figure(3); iter=1:length(L_best);
 plot(iter,F_best*100,'-r','LineWidth',1)
-xlabel('µü´ú´ÎÊı'); ylabel('¸÷´ú×î¼ÑÂ·ÏßµÄ¸ß¶È¾ù·½²î*100'); 
+xlabel('è¿­ä»£æ¬¡æ•°'); ylabel('å„ä»£æœ€ä½³è·¯çº¿çš„é«˜åº¦å‡æ–¹å·®*100'); 
 axis([0,NC_max,0,30]);
 grid on;hold on
 figure(4); iter=1:length(L_best);
 plot(iter,T_best,'-r','LineWidth',1)
-xlabel('µü´ú´ÎÊı'); ylabel('¸÷´ú×î¼ÑÂ·ÏßµÄ×ªÍä´ÎÊı'); 
+xlabel('è¿­ä»£æ¬¡æ•°'); ylabel('å„ä»£æœ€ä½³è·¯çº¿çš„è½¬å¼¯æ¬¡æ•°'); 
 axis([0,NC_max,5,50]);
 grid on;hold on
 figure(5); iter=1:length(L_best);
 plot(iter,S_best,'r',iter,S_ave,'b');
-xlabel('µü´ú´ÎÊı');ylabel('¸÷´ú×î¼ÑÂ·ÏßµÄ×ÛºÏÖ¸±ê¼°Æ½¾ù×ÛºÏÖ¸±ê');
-title('ÊÕÁ²ĞÔ·ÖÎöÇúÏß')
+xlabel('è¿­ä»£æ¬¡æ•°');ylabel('å„ä»£æœ€ä½³è·¯çº¿çš„ç»¼åˆæŒ‡æ ‡åŠå¹³å‡ç»¼åˆæŒ‡æ ‡');
+title('æ”¶æ•›æ€§åˆ†ææ›²çº¿')
 axis([0,NC_max,70,200]);
 grid on;hold on
 toc
